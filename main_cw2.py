@@ -1,21 +1,20 @@
-import subprocess
+import argparse
+from cli import main as cli_main
+from gui import hide_text_in_image_gui
 
-def greet_and_choose_interface():
-    print("Welcome to your secure vault!")
-    interface_choice = input("What interface do you choose? Enter 1 for CLI or 2 for GUI: ")
+def main():
+    print("Steganography App")
+    print("Select Mode:")
+    print("1. CLI mode")
+    print("2. GUI mode")
+    choice = input("Enter your choice (1 or 2): ")
 
-    if interface_choice == '1':
-        try:
-            subprocess.run(['python', 'vault_cli.py'], check=True)
-        except FileNotFoundError:
-            print("Error: vault_cli.py not found.")
-    elif interface_choice == '2':
-        try:
-            subprocess.run(['python', 'vault_gui.py'], check=True)
-        except FileNotFoundError:
-            print("Error: vault_gui.py not found.")
+    if choice == '1':
+        cli_main()
+    elif choice == '2':
+        hide_text_in_image_gui()
     else:
-        print("Invalid choice. Please enter either 1 or 2.")
+        print("Invalid choice. Exiting...")
 
-if __name__ == "__main__":
-    greet_and_choose_interface()
+if __name__ == '__main__':
+    main()
